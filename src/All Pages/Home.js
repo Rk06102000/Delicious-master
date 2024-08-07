@@ -12,6 +12,9 @@ export default function Homes(){
             <HeroAreaStart/>
             <CategoryAreaStart/>
             <BestReceipe/>
+            <CtaArea/>
+            <SmallRecipeArea/>
+            <QuoteSubscribeAdds/>
             <Footer/>
         </>
     );
@@ -248,3 +251,188 @@ export function BestReceipe() {
         </section>
     );
 }
+export function CtaArea() {
+    return (
+        <section className="cta-area bg-img bg-overlay" style={{ backgroundImage: 'url(img/bg-img/bg4.jpg)' }}>
+            <div className="container h-100">
+                <div className="row h-100 align-items-center">
+                    <div className="col-12">
+                        {/* Cta Content */}
+                        <div className="cta-content text-center">
+                            <h2>Gluten Free Recipes</h2>
+                            <p>Fusce nec ante vitae lacus aliquet vulputate. Donec scelerisque accumsan molestie. Vestibulum
+                                ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras sed
+                                accumsan neque. Ut vulputate, lectus vel aliquam congue, risus leo elementum nibh</p>
+                            <a href="#" className="btn delicious-btn">Discover all the recipes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export function SmallRecipeArea() {
+    const recipes = [
+        {
+            imgSrc: "img/bg-img/sr1.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Homemade italian pasta",
+            rating: 4,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr2.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Baked Bread",
+            rating: 4,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr3.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Scalops on salt",
+            rating: 3,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr4.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Fruits on plate",
+            rating: 4,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr5.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Macaroons",
+            rating: 4,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr6.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Chocolate tart",
+            rating: 4,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr7.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Berry Desert",
+            rating: 4,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr8.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Zucchini Grilled on pepper",
+            rating: 4,
+            comments: 2
+        },
+        {
+            imgSrc: "img/bg-img/sr9.jpg",
+            date: "January 04, 2018",
+            link: "receipe-post.html",
+            title: "Chicken Salad",
+            rating: 4,
+            comments: 2
+        }
+    ];
+
+    return (
+        <section className="small-receipe-area section-padding-80-0">
+            <div className="container">
+                <div className="row">
+                    {recipes.map((recipe, index) => (
+                        <div className="col-12 col-sm-6 col-lg-4" key={index}>
+                            <div className="single-small-receipe-area d-flex">
+                                <div className="receipe-thumb">
+                                    <img src={recipe.imgSrc} alt={recipe.title} />
+                                </div>
+                                <div className="receipe-content">
+                                    <span>{recipe.date}</span>
+                                    <a href={recipe.link}>
+                                        <h5>{recipe.title}</h5>
+                                    </a>
+                                    <div className="ratings">
+                                        {[...Array(5)].map((star, i) => (
+                                            <i 
+                                                key={i}
+                                                className={`fa ${i < recipe.rating ? 'fa-star' : 'fa-star-o'}`} 
+                                                aria-hidden="true">
+                                            </i>
+                                        ))}
+                                    </div>
+                                    <p>{recipe.comments} Comments</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export function QuoteSubscribeAdds() {
+    return (
+        <section className="quote-subscribe-adds">
+            <div className="container">
+                <div className="row align-items-end">
+                    {/* Quote */}
+                    <div className="col-12 col-lg-4">
+                        <div className="quote-area text-center">
+                            <span>"</span>
+                            <h4>Nothing is better than going home to family and eating good food and relaxing</h4>
+                            <p>John Smith</p>
+                            <div className="date-comments d-flex justify-content-between">
+                                <div className="date">January 04, 2018</div>
+                                <div className="comments">2 Comments</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Newsletter */}
+                    <div className="col-12 col-lg-4">
+                        <div className="newsletter-area">
+                            <h4>Subscribe to our newsletter</h4>
+                            {/* Form */}
+                            <div className="newsletter-form bg-img bg-overlay" style={{ backgroundImage: 'url(img/bg-img/bg1.jpg)' }}>
+                                <form action="#" method="post">
+                                    <input type="email" name="email" placeholder="Subscribe to newsletter" />
+                                    <button type="submit" className="btn delicious-btn w-100">Subscribe</button>
+                                </form>
+                                <p>Fusce nec ante vitae lacus aliquet vulputate. Donec sceleri sque accumsan molestie.
+                                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Adds */}
+                    <div className="col-12 col-lg-4">
+                        <div className="delicious-add">
+                            <img src="img/bg-img/add.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+// export function  QuoteSubscribeArea(){
+//     return (
+
+//     );
+// }
+
