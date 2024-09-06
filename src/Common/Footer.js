@@ -1,15 +1,32 @@
-import React from 'react';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
         <>
-            <InstagramArea/>
+            <InstagramArea />
             <FooterAreaStart />
         </>
     );
 }
 
 export function InstagramArea() {
+    const [data, setData] = useState([]);
+
+    const apiGet = () => {
+        fetch("https://dummyjson.com/recipes/tag/indian")
+            .then(response => { return response.json() })
+            .then((data) => setData(data.recipes));
+
+    };
+    useEffect(() => {
+        apiGet();
+        const interval = setInterval(() => {
+            apiGet();
+        }, 10000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className="follow-us-instagram">
             <div className="container">
@@ -20,55 +37,19 @@ export function InstagramArea() {
                 </div>
             </div>
             <div className="insta-feeds d-flex flex-wrap">
-                <div className="single-insta-feeds">
-                    <img src="img/bg-img/insta1.jpg" alt="" />
-                    <div className="insta-icon">
-                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
 
-                <div className="single-insta-feeds">
-                    <img src="img/bg-img/insta2.jpg" alt="" />
-                    <div className="insta-icon">
-                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                <div className="single-insta-feeds">
-                    <img src="img/bg-img/insta3.jpg" alt="" />
-                    <div className="insta-icon">
-                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                <div className="single-insta-feeds">
-                    <img src="img/bg-img/insta4.jpg" alt="" />
-                    <div className="insta-icon">
-                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                <div className="single-insta-feeds">
-                    <img src="img/bg-img/insta5.jpg" alt="" />
-                    <div className="insta-icon">
-                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                <div className="single-insta-feeds">
-                    <img src="img/bg-img/insta6.jpg" alt="" />
-                    <div className="insta-icon">
-                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                <div className="single-insta-feeds">
-                    <img src="img/bg-img/insta7.jpg" alt="" />
-                    <div className="insta-icon">
-                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
+                {
+                    data.map((recipe, index) => (
+                        <div className="single-insta-feeds" key={index}>
+                            <img src={recipe.image} alt="" />
+                            <div className="insta-icon">
+                                <Link to={`/blog/${recipe.id}`}><i className="fa fa-instagram" aria-hidden="true"></i></Link>
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
+
         </div>
     );
 }
@@ -89,7 +70,7 @@ export function FooterAreaStart() {
                             <a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
                         </div>
                         <div className="footer-logo">
-                            <a href="index.html"><img src="img/core-img/logo.png" alt="" /></a>
+                            <a href="index.html"><img src="../img/core-img/logo.png" alt="" /></a>
                         </div>
                         <p>
                             Copyright &copy;
